@@ -17,6 +17,7 @@ export const useAppContext = () => useContext(AppContext);
 
 function App() {
   const [posts, setPosts] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
   const router = createBrowserRouter([
     {
       path: "/",
@@ -32,8 +33,10 @@ function App() {
 
   const fetchPosts = async () => {
     try {
+      setIsLoading(true);
       const response = await customFetch.get("/posts");
       setPosts(response.data.posts);
+      setIsLoading(false);
     } catch (error) {}
   };
 
@@ -41,12 +44,16 @@ function App() {
     fetchPosts();
   }, []);
 
+  if (isLoading) {
+    return <div>Loading...</div>;
+  }
+
   return (
-    <>
+    <div className="bg-stone-50 h-screen">
       <AppContext.Provider value={{ posts }}>
         <RouterProvider router={router} />
       </AppContext.Provider>
-    </>
+    </div>
   );
 }
 
