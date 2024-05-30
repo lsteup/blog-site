@@ -1,35 +1,53 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import {
+  BrowserRouter,
+  RouterProvider,
+  createBrowserRouter,
+} from "react-router-dom";
+import Landing from "./pages/Landing";
+import Post from "./pages/Post";
+import Authors from "./pages/Authors";
+import Join from "./pages/Join";
+import Posts from "./pages/Posts";
+import { createContext } from "react";
+import { useContext, useEffect, useState } from "react";
+import customFetch from "./axios";
+
+export const AppContext = createContext();
+export const useAppContext = () => useContext(AppContext);
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [posts, setPosts] = useState([]);
+  const router = createBrowserRouter([
+    {
+      path: "/",
+      element: <Landing />,
+      children: [
+        { index: true, element: <Posts /> },
+        { path: "/:id", element: <Post /> },
+        { path: "/authors", element: <Authors /> },
+        { path: "/join", element: <Join /> },
+      ],
+    },
+  ]);
+
+  const fetchPosts = async () => {
+    try {
+      const response = await customFetch.get("/posts");
+      setPosts(response.data.posts);
+    } catch (error) {}
+  };
+
+  useEffect(() => {
+    fetchPosts();
+  }, []);
 
   return (
     <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+      <AppContext.Provider value={{ posts }}>
+        <RouterProvider router={router} />
+      </AppContext.Provider>
     </>
-  )
+  );
 }
 
-export default App
+export default App;
