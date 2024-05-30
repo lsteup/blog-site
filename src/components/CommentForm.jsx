@@ -17,24 +17,27 @@ const CommentForm = ({ handleSubmit, postId }) => {
 
   return (
     <form
+      className="border border-stone-500 p-2"
       onSubmit={(e) => handleSubmit(e, values.name, values.content, postId)}
     >
-      <input
-        onChange={handleChange}
-        type="text"
-        name="name"
-        id="name"
-        placeholder="name"
-      />
       <textarea
+        className="w-full"
         onChange={handleChange}
         placeholder="write your comment"
         name="content"
         id="content"
         cols="30"
-        rows="10"
       ></textarea>
-      <button type="submit">post</button>
+      <div className="flex justify-between">
+        <input
+          onChange={handleChange}
+          type="text"
+          name="name"
+          id="name"
+          placeholder="name"
+        />
+        <button type="submit">post</button>
+      </div>
     </form>
   );
 };

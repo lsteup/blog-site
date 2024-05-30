@@ -48,15 +48,15 @@ const Post = () => {
   if (isLoading) return <div>...Loading</div>;
 
   return (
-    <div>
-      <h1>{post.title}</h1>
-      <p>{post.content}</p>
+    <div className="border border-black p-8">
+      <h1 className="text-xl mb-4">{post.title}</h1>
+      <p className="font-serif">{post.content}</p>
       <p>{post.author.name}</p>
-      <div>
+      <div className="mt-4">
+        <CommentForm postId={id} handleSubmit={handleSubmit} />
         {post.comments.map((comment) => {
           return <Comment key={comment._id} comment={comment} />;
         })}
-        <CommentForm postId={id} handleSubmit={handleSubmit} />
       </div>
     </div>
   );
