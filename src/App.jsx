@@ -49,7 +49,7 @@ function App() {
   }
 
   return (
-    <div className="bg-stone-50 h-screen">
+    <div className="bg-stone-50 min-h-screen">
       <AppContext.Provider value={{ posts }}>
         <RouterProvider router={router} />
       </AppContext.Provider>
