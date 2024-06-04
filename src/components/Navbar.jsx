@@ -3,17 +3,15 @@ import logo from "/logo.png";
 
 const Navbar = () => {
   return (
-    <nav className="flex justify-between bg-stone-50">
-      <div className="grow">
-        <Link to="/">
-          <img src={logo} alt="" className="max-w-24 px-4" />
-        </Link>
-      </div>
-      <Link className="p-4 text-lg font-semibold" to="/authors">
-        Authors
+    <nav className="bg-white flex w-full text-stone-500 sticky top-0 pr-4  justify-between border-b border-stone-150 box-border items-center p-2 sm:p-4 gap-8 xl:text-lg  ">
+      <Link className="grow" to="/dashboard">
+        {" "}
+        <img className="max-h-10 2xl:max-h-16  ml-2" src={logo} alt="" />
       </Link>
-      <Link className="p-4 text-lg font-semibold" to="/join">
-        Join
+
+      <Link className=" md:block md:border-s-black">Join</Link>
+      <Link to="/authors" className=" md:block md:border-s-black text-black ">
+        Authors
       </Link>
     </nav>
   );
