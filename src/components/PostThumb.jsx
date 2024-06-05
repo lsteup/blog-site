@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { FaRegComment } from "react-icons/fa";
 
-const PostThumb = ({ post }) => {
+const PostThumb = ({ post, showAuthor }) => {
   const words = post.content.split("").length;
   const time = `${Math.ceil(words / 200)} min. read`;
   const dateOptions = { year: "numeric", month: "long", day: "numeric" };
@@ -12,18 +12,21 @@ const PostThumb = ({ post }) => {
   const excerpt = post.content.split(".").slice(0, 2).join(". ");
   return (
     <Link to={`/${post._id}`} className=" py-2 px-2">
-      <div className="flex py-2 mb-2 text-stone-500 items-center gap-2 text-sm">
-        <div className="flex items-center gap-2">
-          <img
-            src={post.author.image}
-            className="max-w-8  aspect-square object-cover "
-            alt=""
-          />
-          <p className="text-black">{post.author.name}</p>
+      {showAuthor && (
+        <div className="flex py-2 mb-2 text-stone-500 items-center gap-2 text-sm">
+          <div className="flex items-center gap-2">
+            <img
+              src={post.author.image}
+              className="max-w-8  aspect-square object-cover "
+              alt=""
+            />
+            <p className="text-black">{post.author.name}</p>
+          </div>
+          <p>•</p>
+          <p>{date}</p>
         </div>
-        <p>•</p>
-        <p>{date}</p>
-      </div>
+      )}
+
       <div className="flex items-center justify-between gap-8">
         <div>
           <h3 className="text-lg sm:text-xl font-semibold my-2">

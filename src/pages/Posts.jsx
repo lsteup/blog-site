@@ -56,7 +56,9 @@ const Posts = () => {
           {posts.map((post) => {
             return (
               <div key={post._id}>
-                <PostThumb post={post}> </PostThumb>
+                <PostThumb post={post} showAuthor={true}>
+                  {" "}
+                </PostThumb>
               </div>
             );
           })}

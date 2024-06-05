@@ -16,6 +16,9 @@ const Post = () => {
 
   const dateOptions = { year: "numeric", month: "long", day: "numeric" };
   let words, time, date;
+  words = post?.content.split("").length;
+  time = `${Math.ceil(words / 200)} min. read`;
+  date = new Date(post?.createdAt).toLocaleDateString("en-US", dateOptions);
 
   const handleSubmit = async (e, name, content, post) => {
     e.preventDefault();
@@ -41,9 +44,7 @@ const Post = () => {
     try {
       const resp = await customFetch.get(`posts/${id}`);
       setPost(resp.data.post);
-      words = post?.content.split("").length;
-      time = `${Math.ceil(words / 200)} min. read`;
-      date = new Date(post?.createdAt).toLocaleDateString("en-US", dateOptions);
+
       setIsLoading(false);
       window.scrollTo(0, 0);
     } catch (error) {

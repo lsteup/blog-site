@@ -37,9 +37,11 @@ const Authors = () => {
   if (isLoading) return <div>Loading ...</div>;
   else
     return (
-      <div>
-        <h1>Meet our Contributors</h1>
-        <div>
+      <div className="p-4 ">
+        <h1 className="text-xl text-center font-medium">
+          Meet our Contributors
+        </h1>
+        <div className="my-4 flex flex-wrap gap-4 justify-center">
           {authors.map((author) => {
             return (
               <Author
