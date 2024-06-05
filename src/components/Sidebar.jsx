@@ -3,6 +3,7 @@ import customFetch from "../axios";
 import { HashLink as Link } from "react-router-hash-link";
 import Notification from "./Notification";
 import { useAppContext } from "../App";
+import Loading from "./Loading";
 
 const Sidebar = () => {
   const posts = useAppContext().posts;
@@ -10,13 +11,12 @@ const Sidebar = () => {
   const [activity, setActivity] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
 
-  const getActivity = async () => {
+  const getComments = async () => {
     try {
       setIsLoading(true);
-      const result = await customFetch.get(`/users/${author}`);
-      const activity = result.data.data.activity;
-      setActivity(activity.slice(0, 10));
-      console.log(activity);
+      const result = await customFetch.get(`/comments`);
+
+      setActivity(result.data.comments);
       setIsLoading(false);
     } catch (err) {
       console.log(err);
@@ -24,12 +24,12 @@ const Sidebar = () => {
   };
 
   useEffect(() => {
-    getActivity();
+    getComments();
   }, []);
 
-  if (isLoading) return <div>Loading ...</div>;
+  if (isLoading) return <Loading />;
   return (
-    <div className="p-12 px-8 xl:px-12 min-w-60 border-r hidden lg:block max-w-sm xl:max-w-md">
+    <div className="pt-12 pl-4 pr-8 xl:px-12 min-w-60 border-r  mr-8 hidden lg:block max-w-xs xl:max-w-sm">
       <h1 className="text-2xl  capitalize text-stone-500 2xl:text-3xl">
         recent activity
       </h1>
@@ -47,7 +47,9 @@ const Sidebar = () => {
               className=""
               key={comment._id}
             >
-              <Notification comment={comment} />
+              <p>{comment.content.slice(0, 75)}...</p>
+              <p>{comment.author}</p>
+              <p>{comment.post.title}</p>
             </Link>
           );
         })}

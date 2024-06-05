@@ -11,7 +11,7 @@ import Posts from "./pages/Posts";
 import { createContext } from "react";
 import { useContext, useEffect, useState } from "react";
 import customFetch from "./axios";
-import ScrollToTop from "./components/ScrollToTop";
+import Loading from "./components/Loading";
 
 export const AppContext = createContext();
 export const useAppContext = () => useContext(AppContext);
@@ -42,11 +42,12 @@ function App() {
   };
 
   useEffect(() => {
+    console.log("component mounted");
     fetchPosts();
   }, []);
 
   if (isLoading) {
-    return <div>Loading...</div>;
+    return <Loading />;
   }
 
   return (

@@ -1,11 +1,13 @@
 import { useEffect, useState } from "react";
 import customFetch from "../axios";
 import Author from "./Author";
+import Loading from "../components/Loading";
+import { useAppContext } from "../App";
 
 const Authors = () => {
   const [authors, setAuthors] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
-  const [posts, setPosts] = useState([]);
+  const posts = useAppContext().posts;
 
   const fetchAuthors = async () => {
     try {
@@ -18,23 +20,11 @@ const Authors = () => {
     }
   };
 
-  const fetchPosts = async () => {
-    try {
-      setIsLoading(true);
-      const resp = await customFetch.get("/posts");
-      setPosts(resp.data.posts);
-      setIsLoading(false);
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
   useEffect(() => {
     fetchAuthors();
-    fetchPosts();
   }, []);
 
-  if (isLoading) return <div>Loading ...</div>;
+  if (isLoading) return <Loading />;
   else
     return (
       <div className="p-4 ">

@@ -9,15 +9,15 @@ const PostThumb = ({ post, showAuthor }) => {
     "en-US",
     dateOptions
   );
-  const excerpt = post.content.split(".").slice(0, 2).join(". ");
+  const excerpt = post.content.slice(0, 250);
   return (
     <Link to={`/${post._id}`} className=" py-2 px-2">
       {showAuthor && (
-        <div className="flex py-2 mb-2 text-stone-500 items-center gap-2 text-sm">
+        <div className="flex mb-3 text-stone-500 items-center gap-2 text-sm">
           <div className="flex items-center gap-2">
             <img
               src={post.author.image}
-              className="max-w-8  aspect-square object-cover "
+              className="max-w-8  aspect-square object-cover rounded-full overflow-hidden "
               alt=""
             />
             <p className="text-black">{post.author.name}</p>
@@ -29,11 +29,9 @@ const PostThumb = ({ post, showAuthor }) => {
 
       <div className="flex items-center justify-between gap-8">
         <div>
-          <h3 className="text-lg sm:text-xl font-semibold my-2">
-            {post.title}
-          </h3>
-          <p className="font-serif hidden sm:block text-stone-700 my-4 mb-6 max-w-prose">
-            {excerpt}
+          <h3 className="text-lg sm:text-xl font-semibold ">{post.title}</h3>
+          <p className="font-serif hidden sm:block text-stone-700 my-1 mb-6 max-w-prose">
+            {excerpt}...
           </p>
         </div>
         <img
@@ -43,7 +41,7 @@ const PostThumb = ({ post, showAuthor }) => {
         />
       </div>
 
-      <div className="my-2 flex text-xs  items-center gap-4 text-stone-500">
+      <div className="my-3 flex text-sm  items-center gap-4 text-stone-500">
         <p>{time}</p>
         <p>•</p>
         <div className=" flex items-center gap-2">
@@ -51,7 +49,7 @@ const PostThumb = ({ post, showAuthor }) => {
           <p>{post.comments.length}</p>
         </div>
         <p>•</p>
-        <p className="underline">See More</p>
+        <p className="underline">Read More</p>
       </div>
     </Link>
   );

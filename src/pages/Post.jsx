@@ -6,6 +6,7 @@ import CommentForm from "../components/CommentForm";
 import { FaRegComment } from "react-icons/fa";
 import Recommendations from "../components/Recommendations";
 import { Link, useParams } from "react-router-dom";
+import Loading from "../components/Loading";
 
 const Post = () => {
   const [post, setPost] = useState();
@@ -59,7 +60,7 @@ const Post = () => {
     console.log("fetched post");
   }, [areNewComments, id]);
 
-  if (isLoading) return <div>...Loading</div>;
+  if (isLoading) return <Loading />;
   else
     return (
       <div className=" p-4 my-4 ">
