@@ -11,6 +11,7 @@ import Posts from "./pages/Posts";
 import { createContext } from "react";
 import { useContext, useEffect, useState } from "react";
 import customFetch from "./axios";
+import ScrollToTop from "./components/ScrollToTop";
 
 export const AppContext = createContext();
 export const useAppContext = () => useContext(AppContext);
@@ -24,9 +25,9 @@ function App() {
       element: <Landing />,
       children: [
         { index: true, element: <Posts /> },
-        { path: "/:id", element: <Post /> },
-        { path: "/authors", element: <Authors /> },
-        { path: "/join", element: <Join /> },
+        { path: ":id", element: <Post /> },
+        { path: "authors", element: <Authors /> },
+        { path: "join", element: <Join /> },
       ],
     },
   ]);
@@ -51,7 +52,7 @@ function App() {
   return (
     <div className=" min-h-screen">
       <AppContext.Provider value={{ posts }}>
-        <RouterProvider router={router} />
+        <RouterProvider router={router}></RouterProvider>
       </AppContext.Provider>
     </div>
   );

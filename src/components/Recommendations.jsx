@@ -1,6 +1,8 @@
 import { Link } from "react-router-dom";
 import { useAppContext } from "../App";
 import PostThumb from "./PostThumb";
+import { FaRegComment } from "react-icons/fa";
+import { useEffect } from "react";
 
 const Recommendations = ({ author, current }) => {
   const allPosts = useAppContext().posts;
@@ -8,7 +10,6 @@ const Recommendations = ({ author, current }) => {
   const posts = allPosts.filter(
     (post) => post.author._id === author._id && post._id != current
   );
-  console.log(posts);
 
   return (
     <div className="border-y border-stone-200 py-4 ">
