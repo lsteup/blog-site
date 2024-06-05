@@ -1,5 +1,4 @@
 import { Link } from "react-router-dom";
-import img from "/placeholder.jpg";
 import { FaRegComment } from "react-icons/fa";
 
 const PostThumb = ({ post }) => {
@@ -12,8 +11,8 @@ const PostThumb = ({ post }) => {
   );
   const excerpt = post.content.split(".").slice(0, 2).join(". ");
   return (
-    <Link to={`/${post._id}`}>
-      <div className=" py-2 px-2">
+    <div>
+      <Link to={`/${post._id}`} className=" py-2 px-2">
         <div className="flex py-2 mb-2 text-stone-500 items-center gap-2 text-sm">
           <div className="flex items-center gap-2">
             <img
@@ -50,12 +49,10 @@ const PostThumb = ({ post }) => {
             <p>{post.comments.length}</p>
           </div>
           <p>•</p>
-          <Link to={`/${post._id}`} className="underline">
-            See More
-          </Link>
+          <p className="underline">See More</p>
         </div>
-      </div>
-    </Link>
+      </Link>
+    </div>
   );
 };
 export default PostThumb;

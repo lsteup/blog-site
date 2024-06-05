@@ -28,7 +28,7 @@ const CommentForm = ({ handleSubmit, postId }) => {
         id="content"
         cols="30"
       ></textarea>
-      <div className="flex justify-between">
+      <div className="flex justify-between text-sm">
         <input
           className="focus:outline-none placeholder:text-stone-400"
           onChange={handleChange}

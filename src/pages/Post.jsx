@@ -2,17 +2,18 @@ import { useEffect, useState } from "react";
 import customFetch from "../axios";
 import Comment from "../components/Comment";
 import CommentForm from "../components/CommentForm";
-import img from "/placeholder.jpg";
-import avatar from "/avatar.jpg";
-import { MdModeComment } from "react-icons/md";
+
+import { FaRegComment } from "react-icons/fa";
+import Recommendations from "../components/Recommendations";
+import { Link, useParams } from "react-router-dom";
 
 const Post = () => {
   const [post, setPost] = useState();
   const [isLoading, setIsLoading] = useState(true);
   const [areNewComments, setAreNewComments] = useState(false);
 
-  const location = window.location.pathname;
-  const id = location.slice(1);
+  const { id } = useParams();
+  console.log(id);
 
   const words = post?.content.split("").length;
   const time = `${Math.ceil(words / 200)} min. read`;
@@ -59,38 +60,45 @@ const Post = () => {
   if (isLoading) return <div>...Loading</div>;
 
   return (
-    <div className=" p-16 ">
-      <img src={img} className="mb-16" alt="" />
-      <h1 className="text-4xl font-semibold capitalize mb-4">{post.title}</h1>
-
-      <div className="flex gap-4 my-8">
-        <img className="max-w-14 " src={avatar} alt="" />
-        <div>
-          <p>{post.author.name}</p>
-          <div className="my-1 flex text-sm items-center gap-4 text-stone-500">
-            <p>{time}</p>
+    <div className=" p-4 my-4 ">
+      <Link className="text-stone-500 underline" to="/">
+        Back to Posts
+      </Link>
+      <h1 className="text-4xl font-semibold capitalize my-4">{post.title}</h1>
+      <div className="flex items-center gap-2 mb-4 border-b pb-4 border-stone-400">
+        <img
+          className="max-w-10 aspect-square object-cover"
+          src={post.author.image}
+          alt=""
+        />
+        <div className="text-sm">
+          <p className="text-base">{post.author.name}</p>
+          <div className="flex gap-2 text-stone-500">
+            <p className="">{time}</p>
             <p>•</p>
             <p>{date}</p>
-            <p>•</p>
-            <div className=" flex items-center gap-2 ">
-              <MdModeComment size="1em" />
-              <p>
-                {post.comments.length} comment
-                {post.comments.length > 1 ? "s" : ""}
-              </p>
-            </div>
           </div>
         </div>
       </div>
-      <p className="font-serif text-lg my-8 min-h-24">{post.content}</p>
-      <div className=" flex items-center gap-2 text-stone-500 mb-8">
-        <MdModeComment size="1em" />
-        <p>
-          {post.comments.length} comment
-          {post.comments.length > 1 ? "s" : ""}
-        </p>
-      </div>
-      <p className="text-xl">Responses {`(${post.comments.length})`}</p>
+      {post.image && (
+        <img
+          src={post.image}
+          className="my-8 2xl:my-8 2xl:mt-16 2xl:max-w-3xl max-h-[50vh] max-w-[80vw] mx-auto"
+          alt=""
+        />
+      )}
+
+      <pre className="max-w-prose p-4 font-serif text-lg min-h-24 text-wrap">
+        {post.content}
+      </pre>
+      <Link className="text-stone-500 underline" to="/">
+        Back to Posts
+      </Link>
+      <Recommendations author={post.author} current={post._id} />
+
+      <h2 className="  text-xl font-medium my-4">
+        Responses {`(${post.comments.length})`}
+      </h2>
       <div className="mt-4">
         <CommentForm postId={id} handleSubmit={handleSubmit} />
         {post.comments.map((comment) => {

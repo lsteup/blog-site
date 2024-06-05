@@ -7,8 +7,10 @@ const Comment = ({ comment }) => {
   return (
     <div className="  my-4 shadow-md bg-white p-4 mt-8">
       <p>{comment.content}</p>
-      <p>{comment.author}</p>
-      <p>{date}</p>
+      <div className="text-sm flex gap-2 mt-2">
+        <p className="font-medium ">{comment.author}</p>
+        <p className="text-stone-500">{date}</p>
+      </div>
     </div>
   );
 };
