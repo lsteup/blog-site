@@ -7,7 +7,7 @@ const Author = ({ author, posts }) => {
   console.log(author.image);
   const photo = author.image.startsWith("/https://res.cloudinary.com");
   return (
-    <div className="bg-gradient-to-tr w-full from-red-200 via-red-300 to-yellow-200 p-0.5  rounded shadow-sm my-4  max-w-md">
+    <div className="bg-gradient-to-tr w-full from-red-300 via-red-400 to-yellow-300 p-0.5  rounded shadow-sm my-4  max-w-md">
       <div className="flex flex-col  bg-white p-4 h-full">
         <img
           className="max-w-48 aspect-square object-cover mx-auto my-6"
