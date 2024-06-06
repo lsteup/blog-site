@@ -23,9 +23,9 @@ const Posts = () => {
   };
 
   return (
-    <div className="flex box-border">
+    <div className="flex box-border min-h-screen">
       <Sidebar />
-      <div className=" p-4 max-w-2xl xl:max-w-4xl mx-auto w-full">
+      <div className=" p-4 max-w-2xl xl:max-w-4xl mx-auto w-full mr-4">
         <p className="text-stone-900 text-2xl mt-8 px-2">
           Dive into a World of Stories and Ideas from Our Community
         </p>

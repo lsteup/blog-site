@@ -42,7 +42,6 @@ function App() {
   };
 
   useEffect(() => {
-    console.log("component mounted");
     fetchPosts();
   }, []);
 
