@@ -32,7 +32,7 @@ const Sidebar = () => {
 
   if (isLoading) return <Loading />;
   return (
-    <div className="no-scrollbar overflow-y-auto max-h-screen overflow-scroll  pl-6 pr-8 sticky top-0 xl:px-12 min-w-60 border-r  mr-8 hidden lg:block max-w-xs xl:max-w-sm">
+    <div className="no-scrollbar overflow-y-auto max-h-screen overflow-scroll  pl-6 pr-8 sticky top-0 xl:px-12 min-w-60 border-l  mr-8 hidden lg:block max-w-xs xl:max-w-sm">
       <StaffPicks />
       <Activity activity={activity.slice(0, 3)} />
       <KeyAuthors />

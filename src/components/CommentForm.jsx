@@ -17,7 +17,7 @@ const CommentForm = ({ handleSubmit, postId }) => {
 
   return (
     <form
-      className="shadow-md bg-white p-4 mt-8"
+      className="shadow-md bg-white p-4 mt-8 text-sm"
       onSubmit={(e) => handleSubmit(e, values.name, values.content, postId)}
     >
       <textarea
@@ -39,13 +39,14 @@ const CommentForm = ({ handleSubmit, postId }) => {
         />
 
         <div className="flex gap-4">
-          <button type="reset">Cancel</button>
-          <button
-            className="p-2 border border-black bg-stone-200 rounded-3xl"
-            type="submit "
-          >
-            Respond
+          <button className="underline text-stone-500" type="reset">
+            Cancel
           </button>
+          <div className=" bg-gradient-to-tr from-red-200 via-red-300 to-yellow-200 shadow-sm rounded-3xl p-0.5">
+            <button className=" p-1 px-2 bg-white rounded-3xl" type="submit ">
+              Respond
+            </button>
+          </div>
         </div>
       </div>
     </form>

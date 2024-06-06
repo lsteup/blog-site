@@ -7,6 +7,7 @@ import { FaRegComment } from "react-icons/fa";
 import Recommendations from "../components/Recommendations";
 import { Link, useParams } from "react-router-dom";
 import Loading from "../components/Loading";
+import Avatar from "../components/Avatar";
 
 const Post = () => {
   const [post, setPost] = useState();
@@ -63,14 +64,16 @@ const Post = () => {
   if (isLoading) return <Loading />;
   else
     return (
-      <div className=" p-4 my-4 ">
-        <Link className="text-stone-500 underline" to="/">
+      <div className=" p-4 my-4 mt-2 max-w-3xl mx-auto mb-16 ">
+        <Link className="text-stone-500 underline " to="/">
           Back to Posts
         </Link>
-        <h1 className="text-4xl font-semibold capitalize my-4">{post.title}</h1>
-        <div className="flex items-center gap-2 mb-4 border-b pb-4 border-stone-400">
+        <h1 className="text-4xl font-semibold capitalize  my-12 mb-6">
+          {post.title}
+        </h1>
+        <div className="flex items-center gap-2 mb-6 border-b pb-6 border-stone-400">
           <img
-            className="max-w-10 aspect-square object-cover"
+            className="max-w-10 aspect-square object-cover rounded-full overflow-hidden"
             src={post.author.image}
             alt=""
           />
@@ -83,18 +86,22 @@ const Post = () => {
             </div>
           </div>
         </div>
-        {post.image && (
-          <img
-            src={post.image}
-            className="my-8 2xl:my-8 2xl:mt-16 2xl:max-w-3xl max-h-[50vh] max-w-[80vw] mx-auto"
-            alt=""
-          />
-        )}
+        <div className="max-w-3xl">
+          {post.image && (
+            <img
+              src={post.image}
+              className="my-8 2xl:my-8 2xl:mt-16  max-h-[70vh] aspect-auto object-cover mx-auto"
+              alt=""
+            />
+          )}
+        </div>
 
-        <pre className="max-w-prose p-4 font-serif text-lg min-h-24 text-wrap">
-          {post.content}
-        </pre>
-        <Link className="text-stone-500 underline" to="/">
+        <div className="min-h-96 flex items-center mb-12">
+          <pre className="max-w-3xl  p-4 font-serif text-lg  text-wrap">
+            {post.content}
+          </pre>
+        </div>
+        <Link className="text-stone-500 underline my-4 pb-4" to="/">
           Back to Posts
         </Link>
         <Recommendations author={post.author} current={post._id} />
@@ -102,7 +109,7 @@ const Post = () => {
         <h2 className="  text-xl font-medium my-4">
           Responses {`(${post.comments.length})`}
         </h2>
-        <div className="mt-4">
+        <div className="mt-4 divide-y">
           <CommentForm postId={id} handleSubmit={handleSubmit} />
           {post.comments.map((comment) => {
             return <Comment key={comment._id} comment={comment} />;

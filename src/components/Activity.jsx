@@ -8,7 +8,7 @@ const Activity = ({ activity }) => {
         {activity.map((comment) => {
           return (
             <Link
-              to={`/dashboard/${comment.post._id}/#${comment._id}`}
+              to={`/${comment.post._id}`}
               className="text-sm"
               key={comment._id}
             >

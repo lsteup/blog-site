@@ -5,8 +5,8 @@ const Comment = ({ comment }) => {
     dateOptions
   );
   return (
-    <div className="  my-4 shadow-md bg-white p-4 mt-8">
-      <p>{comment.content}</p>
+    <div className="  my-4  bg-white p-6 ">
+      <p className="text-sm py-2">{comment.content}</p>
       <div className="text-sm flex gap-2 mt-2">
         <p className="font-medium ">{comment.author}</p>
         <p className="text-stone-500">{date}</p>

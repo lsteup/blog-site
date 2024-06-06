@@ -1,7 +1,8 @@
 import { Link } from "react-router-dom";
 import { FaRegComment } from "react-icons/fa";
 
-const PostThumb = ({ post, showAuthor }) => {
+const PostThumb = ({ post, showAuthor, small }) => {
+  console.log(small);
   const words = post.content.split("").length;
   const time = `${Math.ceil(words / 200)} min. read`;
   const dateOptions = { year: "numeric", month: "long", day: "numeric" };
@@ -29,13 +30,31 @@ const PostThumb = ({ post, showAuthor }) => {
 
       <div className="flex items-center justify-between gap-8">
         <div>
-          <h3 className="text-lg sm:text-xl font-semibold ">{post.title}</h3>
-          <p className="font-serif hidden sm:block text-stone-700 my-1 mb-6 max-w-prose">
+          <h3
+            className={
+              small
+                ? "text-lg font-semibold "
+                : "text-lg sm:text-xl font-semibold "
+            }
+          >
+            {post.title}
+          </h3>
+          <p
+            className={
+              small
+                ? "font-serif hidden sm:block text-stone-700 my-1 mb-0 max-w-prose"
+                : "font-serif hidden sm:block text-stone-700 my-1 mb-6 max-w-prose"
+            }
+          >
             {excerpt}...
           </p>
         </div>
         <img
-          className="max-w-16 sm:max-w-28 xl:max-w-40 aspect-square object-cover"
+          className={
+            small
+              ? "hidden"
+              : "max-w-16 sm:max-w-28 xl:max-w-40 aspect-square object-cover"
+          }
           src={post.image}
           alt=""
         />
