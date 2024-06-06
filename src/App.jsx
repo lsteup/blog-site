@@ -12,6 +12,7 @@ import { createContext } from "react";
 import { useContext, useEffect, useState } from "react";
 import customFetch from "./axios";
 import Loading from "./components/Loading";
+import AuthorPosts from "./pages/AuthorPosts";
 
 export const AppContext = createContext();
 export const useAppContext = () => useContext(AppContext);
@@ -26,7 +27,11 @@ function App() {
       children: [
         { index: true, element: <Posts /> },
         { path: ":id", element: <Post /> },
-        { path: "authors", element: <Authors /> },
+        {
+          path: "authors",
+          element: <Authors />,
+        },
+        { path: "authors/:id", element: <AuthorPosts /> },
         { path: "join", element: <Join /> },
       ],
     },

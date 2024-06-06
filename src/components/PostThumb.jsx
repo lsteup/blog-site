@@ -2,7 +2,6 @@ import { Link } from "react-router-dom";
 import { FaRegComment } from "react-icons/fa";
 
 const PostThumb = ({ post, showAuthor, small }) => {
-  console.log(small);
   const words = post.content.split("").length;
   const time = `${Math.ceil(words / 200)} min. read`;
   const dateOptions = { year: "numeric", month: "long", day: "numeric" };

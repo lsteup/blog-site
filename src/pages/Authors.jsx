@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import customFetch from "../axios";
-import Author from "./Author";
+import Author from "../components/Author";
 import Loading from "../components/Loading";
 import { useAppContext } from "../App";
 

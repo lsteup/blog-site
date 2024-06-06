@@ -5,7 +5,6 @@ const Landing = () => {
   return (
     <div>
       <Navbar />
-
       <Outlet />
     </div>
   );

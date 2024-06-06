@@ -1,5 +1,6 @@
 import { useState } from "react";
 import customFetch from "../axios";
+import Button from "./Button";
 
 const CommentForm = ({ handleSubmit, postId }) => {
   const initialState = {
@@ -42,11 +43,7 @@ const CommentForm = ({ handleSubmit, postId }) => {
           <button className="underline text-stone-500" type="reset">
             Cancel
           </button>
-          <div className=" bg-gradient-to-tr from-red-200 via-red-300 to-yellow-200 shadow-sm rounded-3xl p-0.5">
-            <button className=" p-1 px-2 bg-white rounded-3xl" type="submit ">
-              Respond
-            </button>
-          </div>
+          <Button text={"Send"} />
         </div>
       </div>
     </form>
