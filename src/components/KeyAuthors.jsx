@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import customFetch from "../axios";
 import Loading from "./Loading";
 import Avatar from "./Avatar";
+import { Link } from "react-router-dom";
 
 const KeyAuthors = () => {
   const [isLoading, setIsLoading] = useState(true);
@@ -40,12 +41,12 @@ const KeyAuthors = () => {
         <div className="flex flex-col gap-2">
           {picks.map((author) => {
             return (
-              <div key={author._id}>
+              <Link to={`/authors/${author._id}`} key={author._id}>
                 <Avatar author={author} />
                 <p className="text-sm text-stone-600">
                   {author.bio.slice(0, 80)}...
                 </p>
-              </div>
+              </Link>
             );
           })}
         </div>
