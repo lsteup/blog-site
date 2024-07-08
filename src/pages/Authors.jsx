@@ -31,17 +31,19 @@ const Authors = () => {
         <h1 className="text-2xl xl:text-3xl my-8 text-center font-medium">
           Meet our Contributors
         </h1>
-        <div className="my-4 flex flex-wrap gap-4 ">
-          {authors.map((author) => {
-            return (
-              <Author
-                posts={posts
-                  .filter((post) => post.author._id === author._id)
-                  .slice(0, 3)}
-                author={author}
-              />
-            );
-          })}
+        <div className="my-4 mx-auto w-content ">
+          <div className="flex flex-wrap gap-4 justify-center">
+            {authors.map((author) => {
+              return (
+                <Author
+                  posts={posts
+                    .filter((post) => post.author._id === author._id)
+                    .slice(0, 3)}
+                  author={author}
+                />
+              );
+            })}
+          </div>
         </div>
       </div>
     );

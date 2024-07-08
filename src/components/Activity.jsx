@@ -6,6 +6,9 @@ const Activity = ({ activity }) => {
       <h1 className=" mb-4 ">Recent Comments</h1>
       <div className="flex flex-col gap-4 ">
         {activity.map((comment) => {
+          if (!comment.post) {
+            return <div>Deleted Post</div>;
+          }
           return (
             <Link
               to={`/${comment.post._id}`}
